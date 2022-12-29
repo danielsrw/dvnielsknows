@@ -1,10 +1,11 @@
 const express = require('express')
-const { default: mongoose } = require('mongoose')
-const moongose = require('mongoose')
+const { mongoose } = require('mongoose')
+const ejs = require('ejs')
+const bodyParser = require('body-parser')
 
 const app = express()
 
-// mongoose.set('strictQuery', false);
+mongoose.set('strictQuery', false);
 mongoose
     .connect(process.env.MONGOURL, {
         useNewUrlParser: true,
@@ -17,6 +18,24 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
 
-app.use(require('./server/routes/index'))
+const title = '';
+const description = '';
+const image = '';
+const category = '';
 
-app.listen(3000, () => console.log("Server started listening"))
+const postSchema = new mongoose.Schema({
+    title: String,
+    description: String,
+    image: String,
+    category: String,
+})
+
+const Post = mongoose.model('Post', postSchema)
+
+app.get('/', (req, res) => {
+    res.render('home')
+})
+
+app.listen(3000, () => {
+    console.log('Server started')
+})
