@@ -9,8 +9,12 @@ const blogSchema = new mongoose.Schema({
         type: String,
         required: 'This field is required.'
     },
-    email: {
+    username: {
         type: String,
+        required: 'This field is required.'
+    },
+    tags: {
+        type: Array,
         required: 'This field is required.'
     },
     category: {

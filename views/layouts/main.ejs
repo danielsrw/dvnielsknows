@@ -4,11 +4,11 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>DVNIELKNOWS</title>
+	<title><%= typeof title != 'undefined' ? title: 'DvnielKnows' %></title>
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CMuli:400,700" rel="stylesheet">
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
-	<link rel="stylesheet" href="css/font-awesome.min.css">
-	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="/css/font-awesome.min.css">
+	<link type="text/css" rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
     
@@ -31,12 +31,13 @@
                         <button class="aside-btn"><i class="fa fa-bars"></i></button>
                         <button class="search-btn"><i class="fa fa-search"></i></button>
                         <div id="nav-search">
-                            <form>
-                                <input class="input" name="search" placeholder="Enter your search...">
+                            <form method="POST" action="search">
+                                <input type="search" name="searchTerm" class="input" placeholder="Search...">
+
+                                <button class="nav-close search-close">
+                                    <span></span>
+                                </button>
                             </form>
-                            <button class="nav-close search-close">
-                                <span></span>
-                            </button>
                         </div>
                         <button>
                             <ul class="nav-menu">
@@ -172,9 +173,9 @@
         <!-- /container -->
     </footer>
     
-    <script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.stellar.min.js"></script>
-	<script src="js/main.js"></script>
+    <script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/jquery.stellar.min.js"></script>
+	<script src="/js/main.js"></script>
 </body>
 </html>

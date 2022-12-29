@@ -18,11 +18,83 @@ exports.homepage = async(req, res) => {
     }
 }
 
+exports.about = async(req, res) => {
+    try {
+        
+        res.render('about', { title: 'DvnielKnows - About Us' } );
+    } catch (error) {
+        res.satus(500).send({message: error.message || "Error Occured" });
+    }
+}
+
+exports.contact = async(req, res) => {
+    try {
+        
+        res.render('contact', { title: 'DvnielKnows - Contact Us' } );
+    } catch (error) {
+        res.satus(500).send({message: error.message || "Error Occured" });
+    }
+}
+
+exports.signin = async(req, res) => {
+    try {
+        
+        res.render('signin', { title: 'DvnielKnows - Sign In' } );
+    } catch (error) {
+        res.satus(500).send({message: error.message || "Error Occured" });
+    }
+}
+
+exports.register = async(req, res) => {
+    try {
+        
+        res.render('register', { title: 'DvnielKnows - Create an account' } );
+    } catch (error) {
+        res.satus(500).send({message: error.message || "Error Occured" });
+    }
+}
+
 exports.exploreCategories = async(req, res) => {
     try {
         const limitNumber = 20;
         const categories = await Category.find({}).limit(limitNumber);
-        res.render('categories', { title: 'DvnielKnows - Categoreis', categories } );
+
+        res.render('categories', { title: 'DvnielKnows - Categories', categories } );
+    } catch (error) {
+        res.satus(500).send({message: error.message || "Error Occured" });
+    }
+}
+
+exports.exploreCategoriesById = async(req, res) => { 
+    try {
+        let categoryId = req.params.id;
+        const limitNumber = 20;
+        const categoryById = await Blog.find({ 'category': categoryId }).limit(limitNumber);
+        const categories = await Category.find({}).limit(5);
+
+        res.render('categories', { title: 'DvnielKnows - Categories', categoryById, categories } );
+    } catch (error) {
+        res.satus(500).send({message: error.message || "Error Occured" });
+    }
+}
+
+exports.viewBlog = async(req, res) => {
+    try {
+        let blogId = req.params.id;
+        const blog = await Blog.findById(blogId);
+        res.render('blog', { title: 'DvnielKnows - View Blog', blog } );
+    } catch (error) {
+        res.satus(500).send({message: error.message || "Error Occured" });
+    }
+}
+
+exports.searchBlog = async(req, res) => {
+    try {
+        let searchTerm = req.body.searchTerm;
+        let blog = await Blog.find( { $text: { $search: searchTerm, $diacriticSensitive: true } });
+        let categories = await Category.find({}).limit(5);
+
+        res.render('search', { title: 'DvnielKnows - Search', blog, categories } );
     } catch (error) {
         res.satus(500).send({message: error.message || "Error Occured" });
     }
