@@ -18,22 +18,24 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
 
-const title = '';
-const description = '';
-const image = '';
-const category = '';
-
-const postSchema = new mongoose.Schema({
-    title: String,
-    description: String,
-    image: String,
-    category: String,
-})
-
-const Post = mongoose.model('Post', postSchema)
-
 app.get('/', (req, res) => {
     res.render('home')
+})
+
+app.get('/about', (req, res) => {
+    res.render('about')
+})
+
+app.get('/contact', (req, res) => {
+    res.render('contact')
+})
+
+app.get('/register', (req, res) => {
+    res.render('register')
+})
+
+app.get('/signin', (req, res) => {
+    res.render('signin')
 })
 
 app.listen(3000, () => {
