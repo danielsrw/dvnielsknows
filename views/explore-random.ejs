@@ -1,0 +1,36 @@
+<div class="section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="section-row">
+					<div class="section-title">
+						<h2 class="title">Explore Random</h2>
+					</div>
+				</div>
+                
+                <% if(blog != '') { %>
+                <div class="post post-row">
+                    <a class="post-img" href="/blog/<%= blog._id %>">
+                        <img src="/uploads/<%= blog.image %>" alt="<%= blog.name %>">
+                    </a>
+                    <div class="post-body">
+                        <div class="post-category">
+                            <a href="category.html"><%= blog.category %></a>
+                        </div>
+                        <h3 class="post-title">
+                            <a href="/blog/<%= blog._id %>">
+                                <%= blog.name %>
+                            </a>
+                        </h3>
+                    </div>
+                </div>
+                <% } else { %>
+                    <p>No items found.</p>
+                <% } %> 
+
+			</div>
+			
+            <%- include('./partials/sidebar') %>
+		</div>
+	</div>
+</div>
